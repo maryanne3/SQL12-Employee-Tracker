@@ -1,7 +1,7 @@
 {
   "name": "sql12-employee-tracker",
   "version": "1.0.0",
-  "description": "A Back-End project which allows employers  to view and manage thier employees, thier roles and departments!",
+  "description": "A Back-End project which allows employers  to view and manage their employees, their roles and departments!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/maryanne3/SQL12-Employee-Tracker#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "mysql2": "^3.2.0"
   }
 }
