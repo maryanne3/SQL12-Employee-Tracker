@@ -1,33 +1,32 @@
-USE employee_db; 
+USE employee_DB; 
 
 INSERT INTO department (name)
-VALUES
-('Engineering'),
-('Finance'),
-('Legal'),
-('Sales');
+VALUES 
+("Sales"),
+("Legal"),
+("Finance"),
+("Marketing");
 
 SELECT * FROM department; 
-INSERT INTO role (title, id, salary)
-VALUES
-('Sales Lead', 1, 10000),
-('Salesperson', 2, 8000),
-('Lawyer', 3, 16300),
-('Software Engineer', 4, 31000),
-('Legal Assitant', 4 , 2300);
-('Finance Anaylst', 1 , 74000);
 
+INSERT INTO role (title,department_id,salary)
+VALUES
+("Customer Service Agent",1,23000),
+("Finance Manager",3,654000),
+("Sales Representative",1,25000),
+("Accountant",3,124000),
+("Sales Manager",4,38000);
 
 SELECT * FROM role;
 
-INSERT INTO employee (first_name, last_name, id, manager_id)
+INSERT INTO employee (first_name,last_name,role_id, manager_id)
 VALUES
-('John', 'Bowly', 1, 1),
-('salem', 'warp', 2, NULL), 
-('Precious', 'Fantastic', 4 , NULL),
-('Mary', 'Jones', 5, 2),
-('Magic', 'Mike', 3, 3),
-('Red', 'Bull', 6, 4),
-
+("Sandy", "June",1, 1),
+("Red", "Bull",2,NULL),
+("Precious", "Blue",4,NULL),
+("Walter","Mann",5,2),
+("Lovely","Stars",3,3),
+("Faiza", "Starlight",3,4),
+("Rainbows", "RWhite",5,NULL);
 
 SELECT * FROM employee;

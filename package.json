@@ -4,7 +4,7 @@
   "description": "A Back-End project which allows employers  to view and manage their employees, their roles and departments!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,13 @@
   },
   "homepage": "https://github.com/maryanne3/SQL12-Employee-Tracker#readme",
   "dependencies": {
+    "console-table-printer": "^2.11.1",
+    "console.table": "^0.10.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "inquirer": "^8.2.4",
-    "mysql2": "^3.2.0"
+    "mysql2": "^3.2.0",
+    "nodemon": "^2.0.21",
+    "sequelize": "^6.29.3"
   }
 }

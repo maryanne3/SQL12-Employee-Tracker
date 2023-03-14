@@ -1,8 +1,11 @@
 // connection variables 
-const mysql = require("mysql2");
 const inquirer = require("inquirer");
+const mysql = require("mysql2");
 const { prompt } = require("inquirer");
 const db = require("./db/connection.js");
+
+
+
 
 function start() {
     prompt([
@@ -41,7 +44,7 @@ function start() {
           },
           {name: "Quit",
             value: "Quit",
-          } 
+          }
         ],
       },
     ]).then((res) => {
@@ -71,12 +74,13 @@ function start() {
        case "Quit":
             Quit();
       }
-    });
+    }).catch(err => console.log(err)
+      );
   }
 start();
   
 function viewAllDepartments() {
-     db.query ( "SELECT * FROM a department", (err, res) => {
+     db.query ( "SELECT * FROM department", (err, res) => {
       if (err) throw err;
       console.table(res);
     });
@@ -84,7 +88,7 @@ function viewAllDepartments() {
   }
   
 function viewAllRoles() {
-    db.query("SELECT * FROM a role", (err, res) => {
+    db.query("SELECT * FROM role", (err, res) => {
       if (err) throw err;
 
       console.table(res);
@@ -93,7 +97,7 @@ function viewAllRoles() {
   }
   
 function viewAllEmployees() {
-    db.query("SELECT * FROM an employee", (err, res) => {
+    db.query("SELECT * FROM employee", (err, res) => {
       if (err) throw err;
 
       console.table(res);
@@ -122,7 +126,7 @@ function addDepartment() {
     });
     
 
-}
+};
   
 function addNewRole() {
     let departmentID = [];
@@ -232,11 +236,68 @@ function addNewRole() {
           );
         });
     });
-  }
+  };
   
+  function updateEmployeeRole() {
+    const roleData = [];
+  
+    db.query("SELECT * FROM role", (err, result) => {
+      if (err) throw err;
+  
+      const roleData = result.map((role) => {
+        return {
+          name: role.title,
+          value: role.id,
+        };
+      });
+  
+      db.query("SELECT * FROM employee", (err, res) => {
+        if (err) throw err;
+  
+        const employeeData = res.map((employee) => {
+          return {
+            name: `${employee.first_name} ${employee.last_name}`,
+            value: employee.id,
+          };
+        });
+  
+        inquirer
+          .prompt([
+            {
+              type: "list",
+              name: "employee",
+              message:
+                "Which employee  would you like to update?",
+              choices: employeeData,
+            },
+            {
+              type: "list",
+              name: "role",
+              message: "Please select your employee's new role",
+              choices: roleData,
+            },
+          ])
+          .then((res) => {
+            console.log(res.employee);
+            console.log(res.role);
+            db.query(
+              "UPDATE employee SET employee.role_id = (?) WHERE employee.id = (?)",
+              [res.role, res.employee],
+              (err, res) => {
+                if (err) throw err;
+                start()
+  
+                console.log('Employee role updated!');
+              }
+            );
+          })
+          });
+          
+      });
+      };
 
       
   function Quit() {
         console.log("Thank you for using Employee-Tracker!");
         process.exit();
-  }
+  };
