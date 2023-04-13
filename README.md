@@ -18,7 +18,9 @@ npm i
 npm install inquirer 
 npm install console.table --save 
 ```
+## Screenshots
+![Alt text](assets/images/ETshot.png)
+![Alt text](assets/images/ETScreenshot.png)
 
-
-
-
+## Link
+https://clipchamp.com/watch/nlvbdocxIlX
